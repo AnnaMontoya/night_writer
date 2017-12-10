@@ -2,7 +2,12 @@ require './lib/character_dic'
 require './lib/file_reader'
 
 class BrailleToEnglish
-  attr_reader :content, :top, :middle, :bottom, :output
+  attr_reader :content,
+              :top,
+              :middle,
+              :bottom,
+              :output,
+              :caps
 
   def initialize
     reader = FileReader.new
@@ -11,6 +16,7 @@ class BrailleToEnglish
     @middle  = ""
     @bottom  = ""
     @output  = ""
+    @caps    = false
   end
 
   def separator
@@ -28,28 +34,29 @@ class BrailleToEnglish
   end
 
   def translate
-    caps = false
-
     until top.empty?
       braille = []
       braille << top.slice!(0..1)
       braille << middle.slice!(0..1)
       braille << bottom.slice!(0..1)
       char = BRAILLETOENGLISH[braille]
-
-      if char == :cap
-        caps = true
-      else
-        add_char_to_output(char, caps)
-      end
+      capitalization_checker(char)
     end
     output
   end
 
+  def capitalization_checker(char)
+    if char == :cap
+      @caps = true
+    else
+      add_char_to_output(char, caps)
+    end
+  end
+
   def add_char_to_output(char, caps)
-    if caps == true
+    if @caps == true
       output << char.upcase
-      caps = false
+      @caps = false
     else
       output << char
     end
