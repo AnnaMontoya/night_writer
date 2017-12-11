@@ -1,6 +1,5 @@
 require './lib/character_dic'
 require './lib/file_reader'
-require 'pry'
 
 class EnglishToBraille
   attr_reader :content,
@@ -23,7 +22,7 @@ class EnglishToBraille
   end
 
   def translate(letters)
-    letters.delete("\n").each_char do |letter|
+    letters.each_char do |letter|
       char = ENGLISHTOBRAILLE[letter]
       @output << char[0]
       @output_1 << char[1]
@@ -40,6 +39,5 @@ class EnglishToBraille
       braille << output_2.slice!(0..79) + "\n"
     end
     braille
-    # binding.pry
   end
 end
