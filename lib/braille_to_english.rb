@@ -49,11 +49,11 @@ class BrailleToEnglish
     if char == :cap
       @caps = true
     else
-      add_char_to_output(char, caps)
+      add_char_to_output(char)
     end
   end
 
-  def add_char_to_output(char, caps)
+  def add_char_to_output(char)
     if @caps == true
       output << char.upcase
       @caps = false
