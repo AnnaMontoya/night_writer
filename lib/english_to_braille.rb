@@ -1,5 +1,6 @@
 require './lib/character_dic'
 require './lib/file_reader'
+require 'pry'
 
 class EnglishToBraille
   attr_reader :content,
@@ -29,6 +30,7 @@ class EnglishToBraille
       @output_2 << char[2]
     end
     restrict_char_length(output, output_1, output_2)
+    # binding.pry
   end
 
   def restrict_char_length(output, output_1, output_2)
