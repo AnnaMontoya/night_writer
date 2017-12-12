@@ -13,6 +13,10 @@ class BrailleToEnglishTest < Minitest::Test
     @file_reader = FileReader.new
   end
 
+  def test_class_exists
+    assert_instance_of BrailleToEnglish, bte
+  end
+
   def test_content_returns_string
     assert_equal String, bte.content.class
   end
@@ -40,5 +44,4 @@ class BrailleToEnglishTest < Minitest::Test
   def test_capitalization_checker_checks_capitalization_of_each_letter_of_multiple_words
   assert_equal 'luiS Garcia', bte.capitalization_checker('luiS Garcia')
   end
-
 end
