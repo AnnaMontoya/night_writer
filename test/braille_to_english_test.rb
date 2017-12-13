@@ -6,7 +6,6 @@ require './lib/night_read'
 
 class BrailleToEnglishTest < Minitest::Test
   attr_reader :bte, :file_reader
-  attr_accessor :content
 
   def setup
     @bte = BrailleToEnglish.new
